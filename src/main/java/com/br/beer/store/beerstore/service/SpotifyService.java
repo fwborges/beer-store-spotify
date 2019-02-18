@@ -6,6 +6,8 @@ import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
 import com.wrapper.spotify.model_objects.specification.Paging;
 import com.wrapper.spotify.model_objects.specification.PlaylistSimplified;
 import com.wrapper.spotify.model_objects.specification.PlaylistTrack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Service
 public class SpotifyService {
+
+    public Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private SpotifyApi spotifyApi;
 
@@ -44,7 +48,7 @@ public class SpotifyService {
             }
 
         } catch (IOException | SpotifyWebApiException e) {
-            e.printStackTrace();
+            logger.error("There was trouble with spotify api {}" + e.getMessage());
         }
 
         return new PlaylistSimplified.Builder().build();
@@ -61,9 +65,8 @@ public class SpotifyService {
                     .execute()
                     .getItems());
         } catch (IOException | SpotifyWebApiException e) {
-            e.printStackTrace();
+            logger.error("There was trouble with spotify api {}" + e.getMessage());
         }
-
 
         return new ArrayList<>();
     }

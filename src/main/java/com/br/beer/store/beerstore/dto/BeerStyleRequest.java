@@ -5,13 +5,13 @@ import javax.validation.constraints.NotNull;
 
 public class BeerStyleRequest {
 
-    @NotEmpty(message = "")
+    @NotEmpty(message = "Style is required")
     private String beerStyle;
 
-    @NotNull(message = "")
+    @NotNull(message = "Minimal Temperature is required")
     private Double minTemperature;
 
-    @NotNull(message = "")
+    @NotNull(message = "Max Temperature is required")
     private Double maxTemperature;
 
     public String getBeerStyle() {

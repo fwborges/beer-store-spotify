@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class BeerStyleController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Void> saveBeerStyle(@RequestBody BeerStyleRequest request) {
+    public ResponseEntity<Void> saveBeerStyle(@RequestBody @Valid BeerStyleRequest request) {
 
         service.save(mapper.map(request, BeerStyle.class));
 
@@ -42,7 +43,7 @@ public class BeerStyleController {
     }
 
     @PutMapping("/{beerStyleId}/update")
-    public ResponseEntity<Void> updateBeerStyle(@PathVariable Long beerStyleId, @RequestBody BeerStyleRequest request) {
+    public ResponseEntity<Void> updateBeerStyle(@PathVariable Long beerStyleId, @RequestBody @Valid BeerStyleRequest request) {
 
         service.update(beerStyleId, mapper.map(request, BeerStyle.class));
 
@@ -78,7 +79,7 @@ public class BeerStyleController {
     }
 
     @PostMapping("/temperature")
-    public ResponseEntity<TemperatureSearchResponse> findStyleByTemperature(@RequestBody TemperatureSearchRequest request) {
+    public ResponseEntity<TemperatureSearchResponse> findStyleByTemperature(@RequestBody @Valid TemperatureSearchRequest request) {
 
         return new ResponseEntity<>(beerSpotifyService.findStyleByTemperature(request.getTemperature()), HttpStatus.ACCEPTED);
     }

@@ -3,17 +3,22 @@ package com.br.beer.store.beerstore.config;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.io.IOException;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class SpotifyConfig {
 
-    private static final String clientId = "160628bf46684eba8b14bab4f6bef42d";
-    private static final String clientSecret = "395d7fdf6ac04e338c566236808e4461";
+    @Value("${app.spotify.client.id}")
+    private String clientId;
 
+    @Value("${app.spotify.client.secret}")
+    private String clientSecret;
 
     @Bean
     public ClientCredentials clientCredentials() throws IOException, SpotifyWebApiException {
@@ -31,6 +36,5 @@ public class SpotifyConfig {
             .setClientSecret(clientSecret)
             .build();
     }
-
 
 }
