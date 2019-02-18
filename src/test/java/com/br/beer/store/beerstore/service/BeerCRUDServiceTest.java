@@ -20,9 +20,9 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BeerServiceTest {
+public class BeerCRUDServiceTest {
 
-    private BeerService service;
+    private BeerCRUDService service;
 
     @Mock
     private BeerRepository repository;
@@ -30,7 +30,7 @@ public class BeerServiceTest {
     @Before
     public void setUp() {
 
-        service = new BeerService(repository);
+        service = new BeerCRUDService(repository);
     }
 
     @Test

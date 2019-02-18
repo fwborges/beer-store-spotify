@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BeerService {
+public class BeerCRUDService {
 
     private BeerRepository repository;
 
     @Autowired
-    public BeerService(BeerRepository repository) {
+    public BeerCRUDService(BeerRepository repository) {
         this.repository = repository;
     }
 

@@ -5,7 +5,7 @@ import com.br.beer.store.beerstore.dto.BeerStyleRequest;
 import com.br.beer.store.beerstore.dto.BeerStyleResponse;
 import com.br.beer.store.beerstore.dto.TemperatureSearchRequest;
 import com.br.beer.store.beerstore.entity.beer.BeerStyle;
-import com.br.beer.store.beerstore.service.BeerService;
+import com.br.beer.store.beerstore.service.BeerCRUDService;
 import com.br.beer.store.beerstore.service.BeerSpotifyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/beer/style")
 public class BeerStyleController {
 
-    private BeerService service;
+    private BeerCRUDService service;
 
     private BeerSpotifyService beerSpotifyService;
 
     private ModelMapper mapper;
 
     @Autowired
-    public BeerStyleController(BeerService service, BeerSpotifyService beerSpotifyService, ModelMapper mapper) {
+    public BeerStyleController(BeerCRUDService service, BeerSpotifyService beerSpotifyService, ModelMapper mapper) {
         this.service = service;
         this.beerSpotifyService = beerSpotifyService;
         this.mapper = mapper;
