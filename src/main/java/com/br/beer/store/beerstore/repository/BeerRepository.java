@@ -17,5 +17,5 @@ public interface BeerRepository extends CrudRepository<BeerStyle, Long> {
     List<BeerStyle> findAll();
 
     @Query(value = "SELECT * FROM BEER_STYLE ORDER BY ABS( AVERAGE_TEMPERATURE - :temperature), BEER_STYLE ASC limit 1", nativeQuery = true)
-    BeerStyle findByAverageTemperature(@Param("temperature")Double temperature);
+    Optional<BeerStyle> findByAverageTemperature(@Param("temperature")Double temperature);
 }
