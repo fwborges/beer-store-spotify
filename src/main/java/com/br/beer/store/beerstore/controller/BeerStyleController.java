@@ -1,6 +1,6 @@
 package com.br.beer.store.beerstore.controller;
 
-import com.br.beer.store.beerstore.dto.BeerSpotifyResponse;
+import com.br.beer.store.beerstore.dto.TemperatureSearchResponse;
 import com.br.beer.store.beerstore.dto.BeerStyleRequest;
 import com.br.beer.store.beerstore.dto.BeerStyleResponse;
 import com.br.beer.store.beerstore.dto.TemperatureSearchRequest;
@@ -69,13 +69,17 @@ public class BeerStyleController {
         return new ResponseEntity<>(styleResponses, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{beerStyleId}/remove")
+    public ResponseEntity<Void> deleteBeerStyle(@PathVariable Long beerStyleId) {
+
+        service.delete(beerStyleId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PostMapping("/temperature")
-    public ResponseEntity<List<BeerSpotifyResponse>> findStyleByTemperature(@RequestBody TemperatureSearchRequest request) {
+    public ResponseEntity<TemperatureSearchResponse> findStyleByTemperature(@RequestBody TemperatureSearchRequest request) {
 
-
-
-        beerSpotifyService.findStyleByTemperature(request.getTemperature());
-
-        return null;
+        return new ResponseEntity<>(beerSpotifyService.findStyleByTemperature(request.getTemperature()), HttpStatus.ACCEPTED);
     }
 }

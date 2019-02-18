@@ -1,16 +1,14 @@
 package com.br.beer.store.beerstore.entity.beer;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "beers")
+import javax.persistence.*;
+
+@Entity
+@Table(name = "beer_style")
 public class BeerStyle {
 
-    @Transient
-    public static final String BEERS_SEQUENCE = "beers_sequence";
-
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     private String beerStyle;

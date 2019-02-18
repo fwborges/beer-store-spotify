@@ -4,7 +4,6 @@ import com.br.beer.store.beerstore.entity.beer.BeerStyle;
 import com.br.beer.store.beerstore.exception.EntityDuplicatedException;
 import com.br.beer.store.beerstore.exception.EntityNotFoundException;
 import com.br.beer.store.beerstore.repository.BeerRepository;
-import com.br.beer.store.beerstore.repository.BeerSequenceCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,9 @@ public class BeerService {
 
     private BeerRepository repository;
 
-    private BeerSequenceCreator sequenceCreator;
-
     @Autowired
-    public BeerService(BeerRepository repository, BeerSequenceCreator sequenceCreator) {
+    public BeerService(BeerRepository repository) {
         this.repository = repository;
-        this.sequenceCreator = sequenceCreator;
     }
 
     public void save(BeerStyle beerStyle) {
@@ -33,7 +29,6 @@ public class BeerService {
         }
 
         beerStyle.calculateAvarageTemperature();
-        beerStyle.setId(sequenceCreator.generateSequence(BeerStyle.BEERS_SEQUENCE));
         repository.save(beerStyle);
     }
 
@@ -66,5 +61,10 @@ public class BeerService {
     public List<BeerStyle> findAll() {
 
         return repository.findAll();
+    }
+
+    public void delete(Long beerStyleId) {
+
+        repository.deleteById(beerStyleId);
     }
 }
