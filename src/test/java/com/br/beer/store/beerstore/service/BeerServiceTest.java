@@ -97,15 +97,6 @@ public class BeerServiceTest {
         service.findByStyle("Example");
     }
 
-    @Test(expected = EntityNotFoundException.class)
-    public void shouldThrowsEntityNotFoundExceptionOnDelete() {
-
-        BeerStyle beerStyle = getBeerStyle();
-        when(repository.findById(1l)).thenReturn(Optional.empty());
-
-        service.delete(1l);
-    }
-
     private BeerStyle getBeerStyle() {
 
         BeerStyle beerStyle = new BeerStyle();
